@@ -12,6 +12,9 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "googleapis": "^39.2.0",
+    "mysql2": "^2.1.0",
+    "sequelize": "^6.3.3",
+    "sequelize-cli": "^6.2.0",
     "telegraf": "^3.38.0"
   }
 }

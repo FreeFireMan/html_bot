@@ -4,6 +4,8 @@ const path = require('path');
 const readline = require('readline');
 const {google} = require('googleapis');
 const OAuth2 = google.auth.OAuth2;
+const database = require('../../database').getInstance();
+let Post = database.getModel('post');
 
 
 
@@ -78,9 +80,10 @@ function listMajors(auth) {
         if (rows.length) {
             console.log('Name, Major:');
             // Print columns A and E, which correspond to indices 0 and 4.
-            rows.map((row) => {
-                // console.log(`${row[0]}, ${row[4]}`);
+            rows.forEach((row) => {
+                if (row[0] === 'id') {return}
                 console.log(row);
+                Post.save()
             });
         } else {
             console.log('No data found.');
