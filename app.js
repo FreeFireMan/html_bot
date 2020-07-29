@@ -5,7 +5,9 @@ const {bot} = require('./config/telegram/telegraf');
 const {client} = require("./config/googleAPI");
  client.googleApi();
 const database = require('./database').getInstance();
-database.setModels();
+// database.setModels();
+
+
 
 bot.command('/hello',
     ctx => {

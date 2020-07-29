@@ -5,8 +5,7 @@ const readline = require('readline');
 const {google} = require('googleapis');
 const OAuth2 = google.auth.OAuth2;
 const database = require('../../database').getInstance();
-let Post = database.getModel('post');
-
+const postService = require('../../service/postService');
 
 
 let client_secret_part = 'credentials.json';
@@ -72,18 +71,24 @@ function listMajors(auth) {
     const sheets = google.sheets({version: 'v4', auth});
     sheets.spreadsheets.values.get({
         spreadsheetId: '1y269rVxBoQI1IgjfV4yTxpaUiPn2UxsdmGoGRSx9ah4',
-        range: 'A1:D1000',
+        range: 'A1:E1000',
     }, (err, res) => {
         if (err) return console.log('The API returned an error: ' + err);
-        console.log(res);
+        // console.log(res);
         const rows = res.data.values;
         if (rows.length) {
-            console.log('Name, Major:');
+            // console.log('Name, Major:');
             // Print columns A and E, which correspond to indices 0 and 4.
             rows.forEach((row) => {
                 if (row[0] === 'id') {return}
-                console.log(row);
-                Post.save()
+                 console.log(row);
+                postService.createPost({
+                    id:row[0],
+                    priority: row[1] || 99999,
+                    title: row[2],
+                    body: row[3],
+                    image: row[4],
+                })
             });
         } else {
             console.log('No data found.');
