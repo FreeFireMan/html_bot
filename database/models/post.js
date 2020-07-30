@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING
         },
         body: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
         },
         image: {
             type: DataTypes.STRING,

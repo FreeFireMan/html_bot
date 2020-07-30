@@ -5,11 +5,13 @@ class PostService {
     // postmodel  = db.getModel ???
     createPost(postObj) {
         const PostModel = db.getModel('post');
+        console.log("PostModel");
+        console.log(PostModel);
         try {
             return PostModel.create(postObj);
         } catch (e) {
             console.log(e);
-            throw new ControllerError(e.parent.sqlMessage, 500, 'postService/createPost')
+            throw new ControllerError("MY MSG ERORR: "+e, 500, 'postService/createPost')
         }
     }
 
