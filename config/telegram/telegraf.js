@@ -1,8 +1,8 @@
 // Створення бота через бібліотеку "Телеграф", встановлення токену
 
 const Telegraf = require('telegraf');
-const token = process.env.TOKENTGBOT;
-const bot = new Telegraf(token);
+const {TG} = require('../../config')
+const bot = new Telegraf(TG.TOKEN);
 
 module.exports = {
     bot

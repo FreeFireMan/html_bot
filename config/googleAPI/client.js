@@ -18,7 +18,8 @@ let TOKEN_PATH = TOKEN_DIR + `${gSheet}`;
 
 module.exports = {
     googleApi: () => {
-        fs.readFile(`config${path.sep}filesforSheet${path.sep}${client_secret_part}`, function processClientSecrets(err, content) {
+        fs.readFile(`config${path.sep}filesforSheet${path.sep}${client_secret_part}`,
+            function processClientSecrets(err, content) {
             if (err) {
                 console.log('Error loading client secret file: ' + err);
                 return;
@@ -67,7 +68,7 @@ function getNewToken(oAuth2Client, callback) {
     });
 }
 
-function listMajors(auth) {
+async function listMajors(auth) {
     const sheets = google.sheets({version: 'v4', auth});
     sheets.spreadsheets.values.get({
         spreadsheetId: '1y269rVxBoQI1IgjfV4yTxpaUiPn2UxsdmGoGRSx9ah4',
@@ -81,7 +82,7 @@ function listMajors(auth) {
             // Print columns A and E, which correspond to indices 0 and 4.
             rows.forEach((row) => {
                 if (row[0] === 'id') {return}
-                 console.log(row);
+                 // console.log(row);
                 postService.createPost({
                     id:row[0],
                     priority: row[1] || 99999,

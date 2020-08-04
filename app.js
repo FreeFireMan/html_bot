@@ -1,11 +1,12 @@
-require('dotenv').config();
 
 // TELEGRAF BOT & TOKEN
 const {bot} = require('./config/telegram/telegraf');
-const {client} = require("./config/googleAPI");
- client.googleApi();
+
 const database = require('./database').getInstance();
- database.setModels();
+
+const {client} = require("./config/googleAPI");
+ // client.googleApi();
+
 
 
 
