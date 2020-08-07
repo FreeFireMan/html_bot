@@ -4,7 +4,9 @@ console.log("db");
 console.log(db.getModel);
 
 class PostService {
-    // postmodel  = db.getModel ???
+    constructor() {
+    }
+
     createPost(postObj) {
         const PostModel =  db.getModel('post');
         console.log("PostModel");

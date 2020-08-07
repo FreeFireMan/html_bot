@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const mysql = require('mysql2');
 const fs = require('fs');
 const {resolve} = require('path');
-const {DB} = require('../config');
+const {config:{DB}} = require('../config');
 
 module.exports = (() => {
   let instance;
