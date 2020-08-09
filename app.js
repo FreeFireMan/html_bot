@@ -2,7 +2,7 @@
 // TELEGRAF BOT & TOKEN
 const {bot} = require('./config/telegram/telegraf');
 const database = require('./database').getInstance();
-database.setModels();
+// database.setModels();
 const {client} = require("./config/googleAPI");
 
 

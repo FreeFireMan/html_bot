@@ -62,7 +62,7 @@ module.exports = (() => {
     // }
 
     return {
-      // setModels: () => getModels(),
+       // setModels: () => getModels(),
       getModel: (modelName) =>  sequelize.models[modelName],
     }
   }
