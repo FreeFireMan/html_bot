@@ -1,2 +1,2 @@
 module.exports.telegram = require('./telegram');
-module.exports.config = require('./config.js');
+module.exports = require('./config.js');
