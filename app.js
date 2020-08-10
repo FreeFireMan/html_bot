@@ -2,7 +2,8 @@
 // TELEGRAF BOT & TOKEN
 const {bot} = require('./config/telegram/telegraf');
 // connect to Mysql
-require('./database').getInstance();
+const db = require('./database').getInstance();
+db.setModels();
 
 //commands
 const {launch,start,update} = require('./commands');

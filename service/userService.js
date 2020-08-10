@@ -30,14 +30,14 @@ class UserService {
             throw new ControllerError(e.parent.sqlMessage, 500, 'userService/updateUser')
         }
     }
-    // getPosts() {
-    //     const PostModel = db.getModel('post');
-    //     try {
-    //         return PostModel.findAll({});
-    //     } catch (e) {
-    //         console.log(e);
-    //         throw new ControllerError(e.parent.sqlMessage, 500, 'postService/getPosts')
-    //     }
-    // }
+    getUser(id) {
+        const UserModel = db.getModel('user');
+        try {
+            return UserModel.findByPk(id)
+        } catch (e) {
+            console.log(e);
+            throw new ControllerError(e.parent.sqlMessage, 500, 'userService/getUser')
+        }
+    }
 }
-module.exports = new PostService();
+module.exports = new UserService();

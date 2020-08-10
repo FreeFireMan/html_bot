@@ -64,7 +64,7 @@ module.exports = (() => {
         instance =  initConnection();
 
       }
-       instance.setModels();
+       // instance.setModels();
       return instance;
     }
   }
