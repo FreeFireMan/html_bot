@@ -3,8 +3,8 @@ const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
 const {google} = require('googleapis');
-const OAuth2 = google.auth.OAuth2;
-const database = require('../../database').getInstance();
+// const OAuth2 = google.auth.OAuth2;
+// const database = require('../../database').getInstance();
 const postService = require('../../service/postService');
 
 
@@ -117,13 +117,13 @@ function updateSheet(auth) {
             rows.forEach((row) => {
                 if (row[0] === 'id') {return}
                 console.log(row);
-                postService.createPost({
+                postService.updatePost({
                     id:row[0],
                     priority: row[1] || 99999,
                     title: row[2],
                     body: row[3],
                     image: row[4],
-                })
+                }, row[0])
             });
         } else {
             console.log('No data found.');

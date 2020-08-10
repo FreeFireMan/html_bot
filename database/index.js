@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const mysql = require('mysql2');
+// const mysql = require('mysql2');
 const fs = require('fs');
 const {resolve} = require('path');
 const {DB} = require('../config');
@@ -30,7 +30,7 @@ module.exports = (() => {
         }
     );
 
-    // const models = {};
+    const models = {};
     fs.readdir('./database/models', (err, file) => {
 
       file.forEach(file => {
@@ -38,31 +38,22 @@ module.exports = (() => {
         require(resolve(`./database/models/${modelName}`))(sequelize, Sequelize.DataTypes);
       })
     })
-    sequelize.sync().then(res=>{
-      console.log("res");
-      console.log(res);
-    }).catch(error => {
-      console.log("error");
-      console.log(error);
-    })
-    console.log("sequelize.models");
-    console.log(sequelize.models['post']);
 
-    // function getModels() {
-    //     fs.readdir('./database/models', (err, file) => {
-    //
-    //         file.forEach(file => {
-    //             const modelName = file.split('.')[0];
-    //             models[modelName] = require(resolve(`./database/models/${modelName}`))(client, Sequelize.DataTypes);
-    //             models[modelName].sync(); //create if not exist
-    //             console.log(models);
-    //         })
-    //     })
-    //
-    // }
+    function getModels() {
+        fs.readdir('./database/models', (err, file) => {
+
+            file.forEach(file => {
+                const modelName = file.split('.')[0];
+                models[modelName] = require(resolve(`./database/models/${modelName}`))(sequelize, Sequelize.DataTypes);
+                models[modelName].sync(); //create if not exist
+                // console.log(models);
+            })
+        })
+
+    }
 
     return {
-       // setModels: () => getModels(),
+       setModels: () => getModels(),
       getModel: (modelName) =>  sequelize.models[modelName],
     }
   }
@@ -71,8 +62,9 @@ module.exports = (() => {
     getInstance:  () => {
       if (!instance) {
         instance =  initConnection();
-      }
 
+      }
+       instance.setModels();
       return instance;
     }
   }

@@ -1,32 +1,33 @@
 const db = require('../database').getInstance();
 const ControllerError = require('../error/ControllerError');
 
-class PostService {
+
+class UserService {
     constructor() {
     }
 
-    createPost(postObj) {
-        const PostModel =  db.getModel('post');
+    createUser(userObj) {
+        const UserModel =  db.getModel('user');
         try {
-            return PostModel.create(postObj);
+            return UserModel.create(userObj);
         } catch (e) {
             console.log(e);
-            throw new ControllerError("MY MSG ERORR: "+e, 500, 'postService/createPost')
+            throw new ControllerError("MY MSG ERORR: "+e, 500, 'userService/createUser')
         }
     }
 
-    updatePost(postObj, post_id) {
-        const PostModel = db.getModel('post');
+    updateUser(userObj, user_id) {
+        const UserModel = db.getModel('user');
         try {
-            return PostModel.update(postObj, {
+            return UserModel.update(userObj, {
                 where: {
-                    id: post_id
+                    id: user_id
                 },
                 // returning: true //questionable
             });
         } catch (e) {
             console.log(e);
-            throw new ControllerError(e.parent.sqlMessage, 500, 'postService/updatePost')
+            throw new ControllerError(e.parent.sqlMessage, 500, 'userService/updateUser')
         }
     }
     // getPosts() {
