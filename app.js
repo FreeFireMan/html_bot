@@ -9,6 +9,9 @@ db.setModels();
 const {launch,start,update} = require('./commands');
 //middleware
 const {responseTime} = require('./middleware');
+//hears
+const {startHears} = require('./hears');
+
 
 //middleware
 responseTime(bot);
@@ -17,6 +20,7 @@ responseTime(bot);
 start(bot);
 update(bot);
 
+startHears(bot);
 
 
 try {

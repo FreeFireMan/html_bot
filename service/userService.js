@@ -3,7 +3,9 @@ const ControllerError = require('../error/ControllerError');
 
 
 class UserService {
+
     constructor() {
+
     }
 
     createUser(userObj) {
