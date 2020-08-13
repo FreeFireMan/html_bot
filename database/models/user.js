@@ -21,8 +21,10 @@ module.exports = (sequelize, DataTypes) => {
         },
         language_code:{
             type: DataTypes.STRING
+        },
+        role:{
+            type: DataTypes.STRING
         }
-        
     }, {
         charset: 'utf8',
         collate: 'utf8_unicode_ci',

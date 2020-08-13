@@ -21,7 +21,6 @@ module.exports = (bot) => {
                 + res.dataValues.first_name + ' '
                 + res.dataValues.last_name, option);
         })
-
     });
 }
 
