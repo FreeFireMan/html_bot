@@ -3,8 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
 const {google} = require('googleapis');
-// const OAuth2 = google.auth.OAuth2;
-// const database = require('../../database').getInstance();
+const {GOOGLE} = require('../config');
 const postService = require('../../service/postService');
 
 
@@ -76,8 +75,8 @@ function googleApi(cb) {
 function listMajors(auth) {
     const sheets = google.sheets({version: 'v4', auth});
     sheets.spreadsheets.values.get({
-        spreadsheetId: '1y269rVxBoQI1IgjfV4yTxpaUiPn2UxsdmGoGRSx9ah4',
-        range: 'A1:E1000',
+        spreadsheetId: GOOGLE.SPREADSHEETID,
+        range: GOOGLE.RANGE,
     }, (err, res) => {
         if (err) return console.log('The API returned an error: ' + err);
         // console.log(res);
@@ -105,8 +104,8 @@ function listMajors(auth) {
 function updateSheet(auth) {
     const sheets = google.sheets({version: 'v4', auth});
     sheets.spreadsheets.values.get({
-        spreadsheetId: '1y269rVxBoQI1IgjfV4yTxpaUiPn2UxsdmGoGRSx9ah4',
-        range: 'A1:E1000',
+        spreadsheetId: GOOGLE.SPREADSHEETID,
+        range: GOOGLE.RANGE,
     }, (err, res) => {
         if (err) return console.log('The API returned an error: ' + err);
         // console.log(res);

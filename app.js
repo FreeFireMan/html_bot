@@ -22,6 +22,11 @@ update(bot);
 
 startHears(bot);
 
+bot.on('contact',ctx => {
+    console.log("ctx.update.message.contact");
+    console.log(ctx.update.message.contact);
+})
+
 
 try {
     launch(bot);

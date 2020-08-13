@@ -4,7 +4,7 @@ const option = {
     reply_markup: {
         one_time_keyboard: true,
         keyboard: [
-            [{text: "Розпочати"}],
+            [{text: "Розпочати", request_contact : true}],
             [{text: "Скасувати ❌"}]
         ]
     }

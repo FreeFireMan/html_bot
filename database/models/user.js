@@ -16,11 +16,13 @@ module.exports = (sequelize, DataTypes) => {
         username: {
             type: DataTypes.STRING
         },
+        phone_number:{
+            type: DataTypes.STRING
+        },
         language_code:{
             type: DataTypes.STRING
         }
-
-
+        
     }, {
         charset: 'utf8',
         collate: 'utf8_unicode_ci',

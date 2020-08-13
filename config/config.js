@@ -1,7 +1,7 @@
 require('dotenv').config();
 module.exports = {
     TG:{
-        TOKEN :  process.env.TG_TOKEN
+        TOKEN :  process.env.TG_TOKEN,
     },
     DB:{
         NAME : process.env.DB_NAME,
@@ -11,6 +11,7 @@ module.exports = {
         DIALECT : process.env.DB_DIALECT,
     },
     GOOGLE:{
-        SPREADSHEETID: process.env.SPREADSHEETID
-    }
+        SPREADSHEETID: process.env.SPREADSHEETID,
+        RANGE: process.env.RANGE,
+    },
 }
