@@ -1,8 +1,11 @@
 const Sequelize = require('sequelize');
 // const mysql = require('mysql2');
+const path = require('path');
 const fs = require('fs');
 const {resolve} = require('path');
-const {DB} = require('../config');
+
+const config = require(__dirname+'/config/config.js');
+console.log(config);
 
 module.exports = (() => {
   let instance;
@@ -18,38 +21,58 @@ module.exports = (() => {
     //
     // const res = connection.query(`CREATE DATABASE IF NOT EXISTS ${DB.NAME}`)
 
-    const sequelize = new Sequelize(
-        DB.NAME,
-        DB.USER,
-        DB.PASSWORD,
-        {
-          host: DB.HOST,
-          dialect: DB.DIALECT,
-          // logging: console.log,                  // Default, displays the first parameter of the log function call
-          // logging: (...msg) => console.log(msg), // Displays all log function call parameters
-        }
+      const sequelize = new Sequelize(
+          config.development.database,
+          config.development.username,
+          config.development.password,
+          {
+              host:config.development.host,
+              dialect:config.development.dialect
+          },
+          config
+
     );
 
     const models = {};
-    fs.readdir('./database/models', (err, file) => {
-
-      file.forEach(file => {
-        const modelName = file.split('.')[0];
-        require(resolve(`./database/models/${modelName}`))(sequelize, Sequelize.DataTypes);
-      })
-    })
 
     function getModels() {
-        fs.readdir('./database/models', (err, file) => {
+        // fs.readdir('./database/models', (err, file) => {
+        //     console.log("file");
+        //     console.log(file);
+        //     file.forEach(file => {
+        //         const modelName = file.split('.')[0];
+        //         models[modelName] = require(resolve(`./database/models/${modelName}`))(sequelize, Sequelize.DataTypes);
+        //         models[modelName].sync(); //create if not exist
+        //         console.log(models);
+        //     })
+        //     Object.keys(models).forEach(modelName => {
+        //         console.log("modelName");
+        //         console.log(models[modelName]);
+        //     })
+        // })
 
-            file.forEach(file => {
-                const modelName = file.split('.')[0];
-                models[modelName] = require(resolve(`./database/models/${modelName}`))(sequelize, Sequelize.DataTypes);
-                models[modelName].sync(); //create if not exist
-                // console.log(models);
+        console.log(path.join(__dirname,'models'))
+        const myPath = path.join(__dirname,'models')
+
+        fs.readdirSync(myPath)
+            .filter(file =>{
+                return (file.indexOf(".") !== 0) && (file !== "index.js");
             })
-        })
+            .forEach(async file=>{
+                let model = require(resolve(myPath+`/${file}`))(sequelize, Sequelize.DataTypes);
+                // models[model.name] = model.sync();
+                models[model.name] = await model.sync();
+            })
 
+            Object.keys(models).forEach(function(modelName) {
+                console.log('Object.keys');
+                console.log(models[modelName]);
+                if (models[modelName].associate) {
+                    // models[modelName].associate(models);
+                    console.log('itworket',models[modelName]);
+                    models[modelName].associate(models)
+                }
+            });
     }
 
     return {
