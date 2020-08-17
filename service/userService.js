@@ -1,4 +1,4 @@
-const db = require('../database').getInstance();
+const db = require('../database/models');
 const ControllerError = require('../error/ControllerError');
 
 
@@ -9,7 +9,8 @@ class UserService {
     }
 
     createUser(userObj) {
-        const UserModel =  db.getModel('user');
+        // const UserModel =  db.getModel('user');
+        const UserModel =  db.User;
         try {
             return UserModel.create(userObj);
         } catch (e) {

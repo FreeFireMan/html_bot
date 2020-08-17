@@ -1,4 +1,4 @@
-const db = require('../database').getInstance();
+const db = require('../database/models');
 const ControllerError = require('../error/ControllerError');
 
 class PostService {
