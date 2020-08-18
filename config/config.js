@@ -1,4 +1,4 @@
-require('dotenv').config();
+
 module.exports = {
     TG:{
         TOKEN :  process.env.TG_TOKEN,

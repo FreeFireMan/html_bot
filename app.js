@@ -1,4 +1,4 @@
-
+require('dotenv').config();
 // TELEGRAF BOT & TOKEN
 const {bot} = require('./config/telegram/telegraf');
 
