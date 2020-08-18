@@ -16,12 +16,14 @@ module.exports = (() => {
        const init = (async (db) => {
             try {
                 await db.sequelize.authenticate();
+                await db.sequelize.sync();
                 console.log('Connection has been established successfully.');
             } catch (error) {
                 console.error('Unable to connect to the database:', error);
             }
 
         })(db)
+
         return {
             getDB: () => db,
             getModel: (modelName) => db[modelName],

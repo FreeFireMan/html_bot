@@ -1,5 +1,5 @@
 // connect to googlesheet
-const {client} = require("./../config/googleAPI");
+const {google:{client}} = require("./../config");
 
 module.exports = (bot)=>{
     bot.command('/update',

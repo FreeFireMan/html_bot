@@ -1,4 +1,4 @@
-const db = require('../database/models');
+const db = require('../database').getInstance();
 const ControllerError = require('../error/ControllerError');
 
 class PostService {
@@ -6,7 +6,7 @@ class PostService {
     }
 
     createPost(postObj) {
-        const PostModel =  db.getModel('post');
+        const PostModel =  db.getModel('Post');
         try {
             return PostModel.create(postObj);
         } catch (e) {
@@ -16,9 +16,9 @@ class PostService {
     }
 
     updatePost(postObj, post_id) {
-        const PostModel = db.getModel('post');
+        const {Post} = db.getModel('Post');
         try {
-            return PostModel.update(postObj, {
+            return Post.update(postObj, {
                 where: {
                     id: post_id
                 },

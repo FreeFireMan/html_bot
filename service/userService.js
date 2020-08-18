@@ -1,7 +1,5 @@
 const db = require('../database').getInstance();
 const ControllerError = require('../error/ControllerError');
-console.log('db');
-console.log(db);
 
 class UserService {
 
@@ -36,6 +34,7 @@ class UserService {
     }
     getUser(id) {
         const UserModel = db.getModel('User');
+
         try {
             return UserModel.findByPk(id)
         } catch (e) {

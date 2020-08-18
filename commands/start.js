@@ -12,8 +12,9 @@ const option = {
 module.exports = (bot) => {
     bot.start(ctx => {
         console.log(ctx.from);
-        ctx.reply("", removeKeyboard)
+        // ctx.reply("start", removeKeyboard)
         userService.getUser(ctx.from.id).then(res => {
+            console.log(res);
             !res
                 ? userService.createUser(ctx.from)
                 && ctx.reply("Hello", option)
