@@ -1,6 +1,7 @@
-const db = require('../database/models');
+const db = require('../database').getInstance();
 const ControllerError = require('../error/ControllerError');
-
+console.log('db');
+console.log(db);
 
 class UserService {
 
@@ -10,7 +11,7 @@ class UserService {
 
     createUser(userObj) {
         // const UserModel =  db.getModel('user');
-        const UserModel =  db.User;
+        const UserModel =  db.getModel('User');
         try {
             return UserModel.create(userObj);
         } catch (e) {
@@ -20,7 +21,7 @@ class UserService {
     }
 
     updateUser(userObj, user_id) {
-        const UserModel = db.getModel('user');
+        const UserModel = db.getModel('User');
         try {
             return UserModel.update(userObj, {
                 where: {
@@ -34,7 +35,7 @@ class UserService {
         }
     }
     getUser(id) {
-        const UserModel = db.getModel('user');
+        const UserModel = db.getModel('User');
         try {
             return UserModel.findByPk(id)
         } catch (e) {

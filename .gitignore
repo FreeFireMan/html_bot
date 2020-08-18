@@ -2,3 +2,4 @@
 /node_modules/
 /database/old/
 /.env
+/database/config/conf.js
