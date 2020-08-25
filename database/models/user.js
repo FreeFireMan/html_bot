@@ -1,4 +1,5 @@
 'use strict';
+const Roles = require('./roles');
 const {
   Model
 } = require('sequelize');
@@ -10,7 +11,13 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      // User.hasMany(Roles,{
+      //   foreignKey: 'commentableId',
+      //   constraints: false,
+      //   scope: {
+      //     commentableType: 'image'
+      //   }
+      });// define association here
     }
   };
   User.init({

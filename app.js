@@ -12,6 +12,7 @@ const {contact} = require('./bot_ons');
 
 //middleware
 responseTime(bot);
+
 //commands
 start(bot);
 update(bot);
