@@ -32,7 +32,6 @@ class UserService {
             throw new ControllerError(e.parent.sqlMessage, 500, 'userService/updateUser')
         }
     }
-
     getUser(id) {
         const UserModel = db.getModel('User');
 
