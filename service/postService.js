@@ -16,9 +16,9 @@ class PostService {
     }
 
     updatePost(postObj, post_id) {
-        const {Post} = db.getModel('Post');
+        const PostModel = db.getModel('Post');
         try {
-            return Post.update(postObj, {
+            return PostModel.update(postObj, {
                 where: {
                     id: post_id
                 },

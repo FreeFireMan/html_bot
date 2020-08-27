@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
-  };
+  }
   Post.init({
     priority: DataTypes.INTEGER,
     title: DataTypes.STRING,

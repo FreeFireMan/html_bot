@@ -115,7 +115,7 @@ function updateSheet(auth) {
             // Print columns A and E, which correspond to indices 0 and 4.
             rows.forEach((row) => {
                 if (row[0] === 'id') {return}
-                console.log(row);
+                // console.log(row);
                 postService.updatePost({
                     id:row[0],
                     priority: row[1] || 99999,

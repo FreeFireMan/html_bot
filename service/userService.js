@@ -18,12 +18,12 @@ class UserService {
         }
     }
 
-    updateUser(userObj, user_id) {
+    updateUser(userObj) {
         const UserModel = db.getModel('User');
         try {
             return UserModel.update(userObj, {
                 where: {
-                    id: user_id
+                    id: userObj.user_id
                 },
                 // returning: true //questionable
             });

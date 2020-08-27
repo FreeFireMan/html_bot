@@ -22,9 +22,6 @@ if (config.use_env_variable) {
 fs
   .readdirSync(__dirname)
   .filter(file => {
-      console.log(basename);
-      console.log('file');
-      console.log(file.indexOf('.'));
       return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
   })
   // .forEach(async file => {
