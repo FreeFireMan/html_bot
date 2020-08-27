@@ -9,12 +9,12 @@ class UserService {
 
     createUser(userObj) {
         // const UserModel =  db.getModel('user');
-        const UserModel =  db.getModel('User');
+        const UserModel = db.getModel('User');
         try {
-            return UserModel.create(userObj);
+            return UserModel.create({...userObj, roleId: 1}, {raw: true});
         } catch (e) {
             console.log(e);
-            throw new ControllerError("MY MSG ERORR: "+e, 500, 'userService/createUser')
+            throw new ControllerError("MY MSG ERORR: " + e, 500, 'userService/createUser')
         }
     }
 
@@ -32,15 +32,24 @@ class UserService {
             throw new ControllerError(e.parent.sqlMessage, 500, 'userService/updateUser')
         }
     }
+
     getUser(id) {
         const UserModel = db.getModel('User');
 
         try {
-            return UserModel.findByPk(id)
+            // return UserModel.findByPk(id,{include: ['roleId']})
+            return UserModel.findOne({
+                    where: {id},
+                    include: 'role',
+                    raw: true,
+                nest: true
+                }
+            )
         } catch (e) {
             console.log(e);
             throw new ControllerError(e.parent.sqlMessage, 500, 'userService/getUser')
         }
     }
 }
+
 module.exports = new UserService();

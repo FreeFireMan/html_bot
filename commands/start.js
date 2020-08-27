@@ -15,11 +15,11 @@ module.exports = (bot) => {
         userService.getUser(ctx.from.id).then(res => {
             console.log(res);
             !res
-                ? userService.createUser({...ctx.from,role:'user'})
+                ? userService.createUser(ctx.from)
                 && ctx.reply("Hello", option)
                 : ctx.reply('Hello '
-                + res.dataValues.first_name + ' '
-                + res.dataValues.last_name, option);
+                + res.first_name + ' '
+                + res.last_name, option);
         })
     });
 }

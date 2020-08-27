@@ -3,6 +3,7 @@ const db = require('./models');
 module.exports = (() => {
     let instance;
 
+
     function initConnection() {
         // const connection = mysql.createConnection({
         //   host: DB.HOST,
@@ -13,7 +14,7 @@ module.exports = (() => {
         //
         // const res = connection.query(`CREATE DATABASE IF NOT EXISTS ${DB.NAME}`)
 
-       const init = (async (db) => {
+       (async (db) => {
             try {
                 await db.sequelize.authenticate();
                 await db.sequelize.sync();

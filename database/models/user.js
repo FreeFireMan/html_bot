@@ -1,5 +1,4 @@
 'use strict';
-const Roles = require('./roles');
 const {
   Model
 } = require('sequelize');
@@ -11,15 +10,9 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // User.hasMany(Roles,{
-      //   foreignKey: 'commentableId',
-      //   constraints: false,
-      //   scope: {
-      //     commentableType: 'image'
-      //   }
-      });// define association here
+      User.belongsTo(models.Roles,{as:'role'})
     }
-  };
+  }
   User.init({
     is_bot: DataTypes.BOOLEAN,
     first_name: DataTypes.STRING,
@@ -34,3 +27,4 @@ module.exports = (sequelize, DataTypes) => {
   });
   return User;
 };
+
