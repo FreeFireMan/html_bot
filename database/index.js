@@ -1,4 +1,5 @@
 const db = require('./models');
+// const mysql = require('mysql2');
 
 module.exports = (() => {
     let instance;
@@ -6,13 +7,13 @@ module.exports = (() => {
 
     function initConnection() {
         // const connection = mysql.createConnection({
-        //   host: DB.HOST,
-        //   user: DB.USER,
-        //   password: DB.PASSWORD,
-        //   database: DB.DIALECT,
+        //   host: process.env.DB_HOST,
+        //   user: process.env.DB_USER,
+        //   password: process.env.DB_PASSWORD,
+        //   database: process.env.DB_NAME,
         // });
-        //
-        // const res = connection.query(`CREATE DATABASE IF NOT EXISTS ${DB.NAME}`)
+
+        // const res = connection.query(`CREATE DATABASE IF NOT EXISTS ${process.env.DB_NAME}`)
 
        (async (db) => {
             try {
