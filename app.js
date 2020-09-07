@@ -1,8 +1,11 @@
 require('dotenv').config();
 // TELEGRAF BOT & TOKEN
 const {bot} = require('./config/telegram/telegraf');
+
+//use
+const {useSession,ScenesAddImage} = require('./bot_use')
 //commands
-const {launch,start,update,createRole} = require('./commands');
+const {launch,start,update,createRole, addImage} = require('./commands');
 //middleware
 const {responseTime} = require('./middleware');
 //hears
@@ -10,13 +13,18 @@ const {startHears} = require('./hears');
 //bot on
 const {contact,image} = require('./bot_ons');
 
+//use
+useSession(bot);
+ScenesAddImage(bot);
+
 //middleware
 responseTime(bot);
 
 //commands
 start(bot);
 update(bot);
-createRole(bot)
+createRole(bot);
+addImage(bot);
 
 //hears
 startHears(bot);
