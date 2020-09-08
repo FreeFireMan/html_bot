@@ -29,6 +29,20 @@ class PostService {
             throw new ControllerError(e.parent.sqlMessage, 500, 'postService/updatePost')
         }
     }
+    addImageByName(name){
+        const PostModel = db.getModel('Post');
+        try {
+            return PostModel.update(postObj, {
+                where: {
+                    id: post_id
+                },
+                // returning: true //questionable
+            });
+        } catch (e) {
+            console.log(e);
+            throw new ControllerError(e.parent.sqlMessage, 500, 'postService/updatePost')
+        }
+    }
     // getPosts() {
     //     const PostModel = db.getModel('post');
     //     try {

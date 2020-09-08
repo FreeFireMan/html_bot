@@ -116,13 +116,20 @@ function updateSheet(auth) {
             rows.forEach((row) => {
                 if (row[0] === 'id') {return}
                 // console.log(row);
-                postService.updatePost({
+                const obj = {
                     id:row[0],
                     priority: row[1] || 99999,
                     title: row[2],
                     body: row[3],
                     image: row[4],
-                }, row[0])
+                }
+                postService.updatePost(obj, row[0])
+                    .then(res =>{
+                        if(res[0] === 0){
+                            postService.createPost(obj)
+                        }
+
+                    })
             });
         } else {
             console.log('No data found.');

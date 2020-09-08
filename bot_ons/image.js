@@ -1,5 +1,5 @@
 
-const {userService, fsService} = require('./../service');
+const {userService, fsService,postService} = require('./../service');
 const {
     USERROLES: roles,
     DESTENATION: localPath,

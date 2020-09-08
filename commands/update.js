@@ -5,6 +5,7 @@ module.exports = (bot)=>{
     bot.command('/update',
         ctx => {
             client.googleSheetUpdate()
+
             ctx.reply('update Questions')
         }
     )
