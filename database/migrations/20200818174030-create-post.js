@@ -16,7 +16,10 @@ module.exports = {
       body: {
         type: Sequelize.TEXT
       },
-      image: {
+      name_image: {
+        type: Sequelize.STRING
+      },
+      path_image: {
         type: Sequelize.STRING
       },
       createdAt: {

@@ -121,7 +121,8 @@ function updateSheet(auth) {
                     priority: row[1] || 99999,
                     title: row[2],
                     body: row[3],
-                    image: row[4],
+                    name_image: row[4],
+
                 }
                 postService.updatePost(obj, row[0])
                     .then(res =>{

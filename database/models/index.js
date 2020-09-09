@@ -24,11 +24,7 @@ fs
   .filter(file => {
       return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
   })
-  // .forEach(async file => {
-  //   const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
-  //   db[model.name] = await model.sync();
-  // })
-    .forEach( file => {
+    .forEach(file => {
       const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
       db[model.name] = model;
     });

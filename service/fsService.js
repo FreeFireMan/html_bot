@@ -3,7 +3,8 @@ const ControllerError = require('../error/ControllerError');
 const fs = require('fs');
 const https = require('https');
 const path = require('path');
-
+const postService = require('./postService');
+const dest = require('./../constants').DESTENATION
 
 class fsService {
     constructor() {
@@ -33,6 +34,24 @@ class fsService {
             });
         })
 
+    }
+    addImages() {
+
+        if(fs.existsSync(dest.PHOTO)){
+            fs
+                .readdirSync(dest.PHOTO)
+                .forEach(file => {
+                    postService.addPathImage(file,dest.PHOTO)
+                        .then((res) => {
+                            !res[0]
+                            ? console.log(file)
+                                : ""
+                        }).catch(error => {
+                        console.log('error-----------------------------------------------------------');
+                        console.log(error);
+                    })
+                });
+        }
     }
 
     // updatePost(postObj, post_id) {

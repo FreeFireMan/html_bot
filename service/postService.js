@@ -1,3 +1,5 @@
+
+
 const db = require('../database').getInstance();
 const ControllerError = require('../error/ControllerError');
 
@@ -29,28 +31,21 @@ class PostService {
             throw new ControllerError(e.parent.sqlMessage, 500, 'postService/updatePost')
         }
     }
-    addImageByName(name){
+    addPathImage(fullname, path) {
         const PostModel = db.getModel('Post');
+        const postObj = {path_image: path+fullname}
         try {
             return PostModel.update(postObj, {
                 where: {
-                    id: post_id
+                    name_image: fullname.split('.').shift()
                 },
                 // returning: true //questionable
             });
         } catch (e) {
             console.log(e);
-            throw new ControllerError(e.parent.sqlMessage, 500, 'postService/updatePost')
+            throw new ControllerError(e.parent.sqlMessage, 500, 'postService/addPathImage')
         }
     }
-    // getPosts() {
-    //     const PostModel = db.getModel('post');
-    //     try {
-    //         return PostModel.findAll({});
-    //     } catch (e) {
-    //         console.log(e);
-    //         throw new ControllerError(e.parent.sqlMessage, 500, 'postService/getPosts')
-    //     }
-    // }
+
 }
 module.exports = new PostService();
