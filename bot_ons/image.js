@@ -16,7 +16,6 @@ module.exports = (bot) => {
                         fsService.downloadedByUrlAndName(url, localPath.PHOTO,file_name)
                             .then(result => {
                                 ctx.reply("thank you for image "+result)
-
                             })
                     })
                 }
