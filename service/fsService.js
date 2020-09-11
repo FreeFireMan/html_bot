@@ -4,12 +4,11 @@ const fs = require('fs');
 const https = require('https');
 const path = require('path');
 const postService = require('./postService');
-const dest = require('./../constants').DESTENATION
+
 
 class fsService {
     constructor() {
     }
-
     downloadedByUrlAndName(url, dest, nameFile) {
         if (!fs.existsSync(dest)) {
             fs.mkdirSync(path.join(process.cwd(), dest), {recursive: true})
@@ -29,9 +28,8 @@ class fsService {
             }).on('error', err => {
                 if (responseSent) return;
                 responseSent = true;
-                console.log(e);
-                throw new ControllerError(err, 500, 'fsService/downloadedByUrlAndName');
                 reject(err);
+                throw new ControllerError(err, 500, 'fsService/downloadedByUrlAndName');
             });
         })
 
@@ -39,7 +37,7 @@ class fsService {
 
    async addImages() {
         const outResult = {resolve: [], reject: []};
-
+       const dest = require('./../constants').DESTENATION
         if (fs.existsSync(dest.PHOTO)) {
             const listFiles = fs.readdirSync(dest.PHOTO)
 
@@ -54,7 +52,7 @@ class fsService {
        return outResult
     }
     deleteImage(arrayFiles){
-
+        const dest = require('./../constants').DESTENATION
             arrayFiles.forEach(file => {
                const pathFile = path.join(dest.PHOTO,file)
                 if (fs.existsSync(pathFile)) {

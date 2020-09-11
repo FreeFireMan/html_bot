@@ -3,7 +3,7 @@ require('dotenv').config();
 const {bot} = require('./config/telegram/telegraf');
 
 //use
-const {useSession,ScenesAddImage} = require('./bot_use')
+const {useSession,sceneQuestions} = require('./bot_use')
 //commands
 const {launch,start,update,createRole, addImage} = require('./commands');
 //middleware
@@ -15,7 +15,7 @@ const {contact,image} = require('./bot_ons');
 
 //use
 useSession(bot);
-ScenesAddImage(bot);
+sceneQuestions(bot);
 
 //middleware
 responseTime(bot);
