@@ -1,8 +1,7 @@
  const {} =require ('./../service')
 module.exports = (bot)=>{
     bot.hears('Розпочати',ctx => {
+        ctx.scene.enter('questions')
 
-        ctx.reply("Go-go")
-        ctx.replyWithPhoto('https://photos.app.goo.gl/U5J3Rz3RaPCwTTmDA')
     })
 }
