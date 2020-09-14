@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     phone_number: DataTypes.STRING,
     language_code: DataTypes.STRING,
     last_login: DataTypes.DATE,
+    current_question: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'User',

@@ -11,7 +11,11 @@ class UserService {
         // const UserModel =  db.getModel('user');
         const UserModel = db.getModel('User');
         try {
-            return UserModel.create({...userObj, roleId: 1}, {raw: true});
+            return UserModel.create(
+                {...userObj,
+                    roleId: 1,
+                    current_question: 1
+                }, {raw: true});
         } catch (e) {
             console.log(e);
             throw new ControllerError("MY MSG ERORR: " + e, 500, 'userService/createUser')

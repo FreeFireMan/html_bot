@@ -1,14 +1,14 @@
 // Сцена для
-const {userService} = require('./../../service');
-const role = require('./../../constants').USERROLES
+const {userService, postService} = require('./../../service');
+const {USERROLES:role,MESSAGES:msg} = require('./../../constants')
 
 const WizardScene = require('telegraf/scenes/wizard');
+
 
 const questions = new WizardScene(
     'questions',
     firstStep,
     secondStep,
-
 );
 
 questions.leave(async (ctx) =>
@@ -18,24 +18,28 @@ questions.leave(async (ctx) =>
 async function firstStep(ctx) {
     try {
         const user = await userService.getUser(ctx.from.id)
-        console.log(user);
-        if (user.role.role === role.CONTENT) {
-            ctx.reply('You areallowed')
-            return ctx.wizard.next()
-        } else {
-            ctx.reply('You are not allowed')
-            await ctx.scene.leave();
-        }
+        const question = await postService.getPost(user.current_question)
+        console.log(question);
+        const captionMsg =  question.body+"\n"
+            +msg.question+" " +question.title +' ?'
+        await ctx.replyWithPhoto(
+            {source: question.path_image},
+            {caption : captionMsg},
+            {parse_mode :'markdown'}
+        );
+        return ctx.wizard.next();
+
     } catch (e) {
-        console.log(`My error in scenes_addImages_1\n${e.message}`);
+        console.log(`My error in scenes_question_1\n${e.message}`);
     }
 }
+
 async function secondStep(ctx) {
     try {
         ctx.reply('You areallowed@')
         await ctx.scene.leave();
     } catch (e) {
-        console.log(`My error in scenes_addImages_1\n${e.message}`);
+        console.log(`My error in scenes_question_1\n${e.message}`);
     }
 }
 

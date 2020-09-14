@@ -31,6 +31,21 @@ class PostService {
             throw new ControllerError(e.parent.sqlMessage, 500, 'postService/updatePost')
         }
     }
+
+    getPost(id) {
+        const PostModel = db.getModel('Post');
+        try {
+            return PostModel.findOne({
+                    where: {id},
+                raw: true,
+                }
+            )
+        } catch (e) {
+            console.log(e);
+            throw new ControllerError(e.parent.sqlMessage, 500, 'postService/getPost')
+        }
+    }
+
     addPathImage(fullname, path) {
         const PostModel = db.getModel('Post');
         const postObj = {path_image: path+fullname}

@@ -28,6 +28,9 @@ module.exports = {
       last_login: {
         type: Sequelize.DATE
       },
+      current_question: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
